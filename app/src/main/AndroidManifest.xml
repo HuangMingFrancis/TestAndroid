@@ -12,13 +12,17 @@
 
         </activity>
         <activity android:name=".parcelable.Parcelable1Activity">
+
+        </activity>
+        <activity android:name=".parcelable.Parcelable2Activity"></activity>
+        <activity android:name=".okhttp.TestOkHttpActivity"></activity>
+        <activity android:name=".uithread.TestUIThreadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".parcelable.Parcelable2Activity"></activity>
     </application>
 
 </manifest>
