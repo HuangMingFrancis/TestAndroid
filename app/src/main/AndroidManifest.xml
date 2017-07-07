@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.francis.testandroid" >
+    package="com.example.francis.testandroid">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".parcelable.Parcelable1Activity" />
+        <activity android:name=".parcelable.Parcelable2Activity" />
+        <activity android:name=".okhttp.TestOkHttpActivity" />
+        <activity android:name=".uithread.TestUIThreadActivity"></activity>
+
+        <service
+            android:name=".aidl.BookManagerService"
+            android:process=":remote" />
+
+        <activity android:name=".aidl.BookManagerActivity">
 
         </activity>
-        <activity android:name=".parcelable.Parcelable1Activity">
 
-        </activity>
-        <activity android:name=".parcelable.Parcelable2Activity"></activity>
-        <activity android:name=".okhttp.TestOkHttpActivity"></activity>
-        <activity android:name=".uithread.TestUIThreadActivity">
+        <provider
+            android:name=".contentprovider.BookProvider"
+            android:authorities="com.example.francis.testandroid.book.provider"
+            android:process=":provider" />
+
+        <activity android:name=".contentprovider.ProviderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
