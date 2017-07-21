@@ -3,6 +3,7 @@
     package="com.example.francis.testandroid">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,22 +13,36 @@
         <activity android:name=".parcelable.Parcelable1Activity" />
         <activity android:name=".parcelable.Parcelable2Activity" />
         <activity android:name=".okhttp.TestOkHttpActivity" />
-        <activity android:name=".uithread.TestUIThreadActivity"></activity>
+        <activity android:name=".uithread.TestUIThreadActivity" />
 
         <service
             android:name=".aidl.BookManagerService"
             android:process=":remote" />
 
-        <activity android:name=".aidl.BookManagerActivity">
-
-        </activity>
+        <activity android:name=".aidl.BookManagerActivity" />
 
         <provider
             android:name=".contentprovider.BookProvider"
             android:authorities="com.example.francis.testandroid.book.provider"
             android:process=":provider" />
 
-        <activity android:name=".contentprovider.ProviderActivity">
+        <activity android:name=".contentprovider.ProviderActivity" />
+
+        <service
+            android:name=".messenger.MessengerService"
+            android:process=":remote" />
+
+        <activity android:name=".messenger.MessengerActivity" />
+        <activity android:name=".aidl.BinderPoolActivity"></activity>
+
+        <service
+            android:name=".aidl.BinderPoolService"
+            android:process=":remote" />
+
+        <activity android:name=".view.event_system.FullScreenSlideActivity">
+
+        </activity>
+        <activity android:name=".view.event_system.NestedSlidingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
