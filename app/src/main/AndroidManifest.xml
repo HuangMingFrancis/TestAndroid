@@ -47,6 +47,9 @@
         </activity>
 
         <activity android:name=".view.custom.bouncingBallView.BouncingBallViewActivity">
+        </activity>
+
+        <activity android:name=".view.recycler_view.TestRecyclerViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
