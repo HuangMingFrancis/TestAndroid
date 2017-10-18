@@ -2,6 +2,7 @@ package com.example.francis.testandroid;
 
 import android.app.Application;
 
+import com.example.francis.testandroid.uitls.CrashHandler;
 import com.example.francis.testandroid.uitls.Utils;
 
 /**
@@ -13,5 +14,9 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Utils.init(this);
+
+
+        CrashHandler crashHandler = CrashHandler.getsInstance();
+        crashHandler.init(this);
     }
 }
