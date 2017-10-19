@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.francis.testandroid">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -56,6 +60,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+        <activity android:name=".view.event_system.NestedSlidingActivity">
+
+        </activity>
+
+        <activity android:name=".view.custom.bouncingBallView.BouncingBallViewActivity">
+
+        </activity>
+
+        <activity android:name=".glide.TestGlideActivity">
+
         </activity>
     </application>
 
