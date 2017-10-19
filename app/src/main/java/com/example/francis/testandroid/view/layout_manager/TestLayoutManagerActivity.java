@@ -54,8 +54,8 @@ public class TestLayoutManagerActivity extends AppCompatActivity {
 
         adapter = new RecyclerViewAdapter(this, dataList);
 
-        recyclerView.setLayoutManager(new MyLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new MyLayoutManager(this));
     }
 
 
