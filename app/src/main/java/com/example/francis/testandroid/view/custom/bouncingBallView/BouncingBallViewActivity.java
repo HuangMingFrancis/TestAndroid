@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.francis.testandroid.R;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.filter.Filter;
+//import com.zhihu.matisse.Matisse;
+//import com.zhihu.matisse.MimeType;
+//import com.zhihu.matisse.engine.impl.GlideEngine;
+//import com.zhihu.matisse.filter.Filter;
 
 import java.util.List;
 
@@ -46,16 +46,16 @@ public class BouncingBallViewActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                bouncingBallView1.letUsAnimate();
 
-                Matisse.from(BouncingBallViewActivity.this)
-                        .choose(MimeType.allOf())
-                        .countable(true)
-                        .maxSelectable(9)
-//                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-//                        .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
-                        .forResult(REQUEST_CODE_CHOOSE);
+//                Matisse.from(BouncingBallViewActivity.this)
+//                        .choose(MimeType.allOf())
+//                        .countable(true)
+//                        .maxSelectable(9)
+////                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+////                        .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+//                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+//                        .thumbnailScale(0.85f)
+//                        .imageEngine(new GlideEngine())
+//                        .forResult(REQUEST_CODE_CHOOSE);
 
             }
         });
@@ -76,7 +76,7 @@ public class BouncingBallViewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            mSelected = Matisse.obtainResult(data);
+//            mSelected = Matisse.obtainResult(data);
             Log.d("Matisse", "mSelected: " + mSelected);
         }
     }

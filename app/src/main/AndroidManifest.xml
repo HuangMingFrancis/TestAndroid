@@ -55,11 +55,6 @@
             android:name=".view.design.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -73,6 +68,14 @@
 
         <activity android:name=".glide.TestGlideActivity">
 
+        </activity>
+
+        <activity android:name=".view.test_scroll.TestScrollActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

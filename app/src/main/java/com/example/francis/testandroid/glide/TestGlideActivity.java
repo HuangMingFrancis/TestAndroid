@@ -56,9 +56,9 @@ public class TestGlideActivity extends AppCompatActivity implements View.OnClick
                 Glide.with(mContext)
                         .load(url)
                         //加载过程的占位图
-                        .placeholder(R.drawable.ic_empty_zhihu)
+                        .placeholder(R.mipmap.ic_launcher)
                         //错误时显示的占位图
-                        .error(R.drawable.ic_gif)
+                        .error(R.mipmap.ic_launcher)
                         //禁用Glide的缓存功能，否则会从缓存中加载之前显示过的图片
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(ivGlide);
@@ -68,16 +68,16 @@ public class TestGlideActivity extends AppCompatActivity implements View.OnClick
                         .load(gifUrl)
                         //设置格式 asGif，如果是Gif设置成静态则显示第一帧的图片，如果是静态设置成Gif则显示错误的占位符
                         .asBitmap()
-                        .placeholder(R.drawable.ic_empty_zhihu)
-                        .error(R.drawable.ic_gif)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .error(R.mipmap.ic_launcher)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(ivGlide);
 
                 //指定图片大小，默认情况下会根据imageView的大小去显示，也可以手动设置
                 Glide.with(mContext)
                         .load(gifUrl)
-                        .placeholder(R.drawable.ic_empty_zhihu)
-                        .error(R.drawable.ic_gif)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .error(R.mipmap.ic_launcher)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         //手动设置图片的大小
                         .override(100, 100)
