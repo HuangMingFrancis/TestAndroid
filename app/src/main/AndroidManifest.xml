@@ -71,6 +71,9 @@
         </activity>
 
         <activity android:name=".view.test_scroll.TestScrollActivity">
+        </activity>
+
+        <activity android:name=".view.progress_view.TestAuditProgressView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
