@@ -71,15 +71,22 @@
         </activity>
 
         <activity android:name=".view.test_scroll.TestScrollActivity">
+
         </activity>
 
         <activity android:name=".view.progress_view.TestAuditProgressView">
+
+        </activity>
+
+        <activity android:name=".loadapk.HostProgramActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".loadapk.ProxyActivity"/>
+
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class TestScrollActivity extends AppCompatActivity {
         rlytTop = (RelativeLayout) findViewById(R.id.rlyt_top);
         rlytMy = (RelativeLayout) findViewById(R.id.rlyt_my);
 
-        scrollerContent = (ScrollView) findViewById(R.id.scroll_content);
+        scrollerContent = (MyScrollView) findViewById(R.id.scroll_content);
         tvContent = (TextView) findViewById(R.id.tv_content);
 
         scrollerContent.setOnTouchListener(new View.OnTouchListener() {
@@ -53,40 +53,43 @@ public class TestScrollActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        lastY = (int) event.getY();
+//                        lastY = (int) event.getY();
+                        Log.i(TAG, "onTouch: scroll down");
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        int currentY = (int) event.getY();
-                        Log.i(TAG, "onTouch: " + (currentY - lastY));
-                        int destY = currentY - lastY;
-                        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) scrollerContent.getLayoutParams();
-                        ViewGroup.MarginLayoutParams paramsTop = (ViewGroup.MarginLayoutParams) rlytTop.getLayoutParams();
-                        ViewGroup.MarginLayoutParams paramsBottom = (ViewGroup.MarginLayoutParams) rlyBottom.getLayoutParams();
-
-                        if (currentY - lastY < 0){
-                            //上滑隐藏头部和底部
-
-                            if (paramsTop.topMargin > (-paramsTop.height)){
-                                destY = (paramsTop.topMargin + destY < (-paramsTop.height) ? (-paramsTop.height - paramsTop.topMargin) : destY);
-                                paramsTop.topMargin += destY;
-                                paramsBottom.bottomMargin += destY;
-                                rlytTop.requestLayout();
-                                rlyBottom.requestLayout();
-                            }
-
-                        }else{
-                            //下滑显示头部和底部
-
-                            if (paramsTop.topMargin <= 0){
-                                destY = (paramsTop.topMargin + destY > 0 ? 0 - paramsTop.topMargin : destY);
-                                paramsTop.topMargin += destY;
-                                paramsBottom.bottomMargin += destY;
-                                rlytTop.requestLayout();
-                                rlyBottom.requestLayout();
-                            }
-                        }
+//                        int currentY = (int) event.getY();
+//                        Log.i(TAG, "onTouch: " + (currentY - lastY));
+//                        int destY = currentY - lastY;
+//                        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) scrollerContent.getLayoutParams();
+//                        ViewGroup.MarginLayoutParams paramsTop = (ViewGroup.MarginLayoutParams) rlytTop.getLayoutParams();
+//                        ViewGroup.MarginLayoutParams paramsBottom = (ViewGroup.MarginLayoutParams) rlyBottom.getLayoutParams();
+//
+//                        if (currentY - lastY < 0){
+//                            //上滑隐藏头部和底部
+//
+//                            if (paramsTop.topMargin > (-paramsTop.height)){
+//                                destY = (paramsTop.topMargin + destY < (-paramsTop.height) ? (-paramsTop.height - paramsTop.topMargin) : destY);
+//                                paramsTop.topMargin += destY;
+//                                paramsBottom.bottomMargin += destY;
+//                                rlytTop.requestLayout();
+//                                rlyBottom.requestLayout();
+//                            }
+//
+//                        }else{
+//                            //下滑显示头部和底部
+//
+//                            if (paramsTop.topMargin <= 0){
+//                                destY = (paramsTop.topMargin + destY > 0 ? 0 - paramsTop.topMargin : destY);
+//                                paramsTop.topMargin += destY;
+//                                paramsBottom.bottomMargin += destY;
+//                                rlytTop.requestLayout();
+//                                rlyBottom.requestLayout();
+//                            }
+//                        }
+                        Log.i(TAG, "onTouch: scroll move");
                         break;
                     case MotionEvent.ACTION_UP:
+                        Log.i(TAG, "onTouch: scroll up");
                         break;
                 }
                 return false;

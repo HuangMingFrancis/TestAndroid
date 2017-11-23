@@ -26,18 +26,18 @@
             android:text="bottom"/>
     </RelativeLayout>
 
-    <ScrollView
+    <com.example.francis.testandroid.view.test_scroll.MyScrollView
         android:layout_below="@id/rlyt_top"
         android:id="@+id/scroll_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rlyt_bottom">
-        <TextView
+        <com.example.francis.testandroid.view.test_scroll.MyTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tv_content"
             android:text="@string/large_text"/>
-    </ScrollView>
+    </com.example.francis.testandroid.view.test_scroll.MyScrollView>
 
 
 </RelativeLayout>
