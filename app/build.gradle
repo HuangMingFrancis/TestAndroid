@@ -1,8 +1,30 @@
 apply plugin: 'com.android.application'
 
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmm')
+    return formattedDate
+}
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
+
+    signingConfigs {
+        ztesoft {
+            storeFile file("ztesoft-release.keystore")
+            storePassword "9LEJKE28#FEAKCHK37CSLJ3"
+            keyAlias "ztesoft"
+            keyPassword "9LEJKE28#FEAKCHK37CSLJ3"
+        }
+
+        debug {
+            keyAlias 'ztesoft_debug'
+            keyPassword 'ztesoftdebug'
+            storeFile file('ztesoft_debug_key.jks')
+            storePassword 'ztesoftdebug'
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.francis.testandroid"
         minSdkVersion 15
@@ -10,6 +32,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
@@ -26,14 +49,14 @@ android {
         //配置不同的构建类型
         //buildType的一些属性查询
         // https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.BuildType.html#com.android.build.gradle.internal.dsl.BuildType:applicationIdSuffix
-        jniDebug{
-            //允许复制其他构建类型的参数, 在其基础上进行修改
-            initWith debug
-
-            applicationIdSuffix ".jnidebug"
-            //此构建类型是否配置为使用可调试的本地代码生成APK
-            jniDebuggable true
-        }
+//        jniDebug{
+//            //允许复制其他构建类型的参数, 在其基础上进行修改
+//            initWith debug
+//
+//            applicationIdSuffix ".jnidebug"
+//            //此构建类型是否配置为使用可调试的本地代码生成APK
+//            jniDebuggable true
+//        }
 
 
     }
@@ -49,7 +72,7 @@ android {
     //组合多个build flavors, 例如, 这里会选择一个 api+mode+buildtype 作为一个组合
     //而组合的总数为, api个数 * mode个数 * buildtype个数 = 3 * 2 * 3 = 18 种组合,
     //可以点击左边的build Variants 就可以选择任意一个组合进行编译
-    flavorDimensions "api", "mode"
+    flavorDimensions "mode"
     productFlavors {
         demo {
             dimension "mode"
@@ -62,41 +85,41 @@ android {
             versionNameSuffix "-full"
         }
 
-        minApi24 {
-            dimension "api"
-            minSdkVersion '24'
-            // To ensure the target device receives the version of the app with
-            // the highest compatible API level, assign version codes in increasing
-            // value with API level. To learn more about assigning version codes to
-            // support app updates and uploading to Google Play, read Multiple APK Support
-            versionCode 30000 + android.defaultConfig.versionCode
-            versionNameSuffix "-minApi24"
-        }
-
-        minApi23 {
-            dimension "api"
-            minSdkVersion '23'
-            versionCode 20000  + android.defaultConfig.versionCode
-            versionNameSuffix "-minApi23"
-        }
-
-        minApi21 {
-            dimension "api"
-            minSdkVersion '19'
-            versionCode 10000  + android.defaultConfig.versionCode
-            versionNameSuffix "-minApi21"
-        }
+//        minApi24 {
+//            dimension "api"
+//            minSdkVersion '24'
+//            // To ensure the target device receives the version of the app with
+//            // the highest compatible API level, assign version codes in increasing
+//            // value with API level. To learn more about assigning version codes to
+//            // support app updates and uploading to Google Play, read Multiple APK Support
+//            versionCode 30000 + android.defaultConfig.versionCode
+//            versionNameSuffix "-minApi24"
+//        }
+//
+//        minApi23 {
+//            dimension "api"
+//            minSdkVersion '23'
+//            versionCode 20000  + android.defaultConfig.versionCode
+//            versionNameSuffix "-minApi23"
+//        }
+//
+//        minApi21 {
+//            dimension "api"
+//            minSdkVersion '19'
+//            versionCode 10000  + android.defaultConfig.versionCode
+//            versionNameSuffix "-minApi21"
+//        }
     }
 
     //过滤变体, 如下就会过滤minApi21demo组合的变体, 在bulid Variants中就看不到这些组合了
-    variantFilter { variant ->
-        def names = variant.flavors*.name
-        // To check for a certain build type, use variant.buildType.name == "<buildType>"
-        if (names.contains("minApi21") && names.contains("demo")) {
-            // Gradle ignores any variants that satisfy the conditions above.
-            setIgnore(true)
-        }
-    }
+//    variantFilter { variant ->
+//        def names = variant.flavors*.name
+//        // To check for a certain build type, use variant.buildType.name == "<buildType>"
+//        if (names.contains("minApi21") && names.contains("demo")) {
+//            // Gradle ignores any variants that satisfy the conditions above.
+//            setIgnore(true)
+//        }
+//    }
 
     //修改源集设置
     //这里新建了对应的build的java文件夹, debug, 要加main中使用debug目录下的资源, 需要下面的一些配置
@@ -110,6 +133,35 @@ android {
 //            manifest.srcFile 'debug/AndroidManifest.xml'
 //        }
 //    }
+
+
+    //修改生成的apk名字
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def newName
+            def timeNow
+            def oldFile = output.outputFile
+            def outDirectory = oldFile.parent
+
+            if ("true".equals(rootProject.ext.IS_JENKINS)) {
+                timeNow = rootProject.ext.JENKINS_TIME
+                outDirectory = 'D:\\tomcat\\apache-tomcat-6.0.53\\apache-tomcat-6.0.53\\webapps\\Jenkins'
+                newName = 'test' +
+                        rootProject.ext.APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+            } else {
+                timeNow = getDate()
+                if (variant.buildType.name.equals('debug')) {
+                    newName = "yj-android-v${APP_VERSION}-debug.apk"
+                } else {
+                    newName = 'yj-android-v' +
+                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+                }
+            }
+
+            output.outputFile = new File(outDirectory, newName)
+
+        }
+    }
 }
 
 dependencies {
