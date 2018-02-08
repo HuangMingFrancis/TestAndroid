@@ -58,13 +58,6 @@
 
         </activity>
 
-        <activity android:name=".view.event_system.NestedSlidingActivity">
-
-        </activity>
-
-        <activity android:name=".view.custom.bouncingBallView.BouncingBallViewActivity">
-
-        </activity>
 
         <activity android:name=".glide.TestGlideActivity">
 
