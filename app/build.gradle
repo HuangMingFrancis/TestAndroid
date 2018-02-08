@@ -143,19 +143,26 @@ android {
             def oldFile = output.outputFile
             def outDirectory = oldFile.parent
 
-            if ("true".equals(IS_JENKINS)) {
-                timeNow = JENKINS_TIME
-                outDirectory = 'D:/tomcat'
-                newName = 'test' +
-                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+//            if ("true".equals(IS_JENKINS)) {
+//                timeNow = JENKINS_TIME
+//                outDirectory = 'D:/tomcat'
+//                newName = 'test' +
+//                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+//            } else {
+//                timeNow = getDate()
+//                if (variant.buildType.name.equals('debug')) {
+//                    newName = "yj-android-v${APP_VERSION}-debug.apk"
+//                } else {
+//                    newName = 'yj-android-v' +
+//                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+//                }
+//            }
+            timeNow = getDate()
+            if (variant.buildType.name.equals('debug')) {
+                newName = "yj-android-v${APP_VERSION}-debug.apk"
             } else {
-                timeNow = getDate()
-                if (variant.buildType.name.equals('debug')) {
-                    newName = "yj-android-v${APP_VERSION}-debug.apk"
-                } else {
-                    newName = 'yj-android-v' +
-                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
-                }
+                newName = 'yj-android-v' +
+                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
             }
 
             output.outputFile = new File(outDirectory, newName)
