@@ -73,17 +73,17 @@ android {
     //而组合的总数为, api个数 * mode个数 * buildtype个数 = 3 * 2 * 3 = 18 种组合,
     //可以点击左边的build Variants 就可以选择任意一个组合进行编译
 //    flavorDimensions "mode"
-//    productFlavors {
-//        demo {
-//            dimension "mode"
-//            applicationIdSuffix ".demo"
-//            versionNameSuffix "-demo"
-//        }
-//        full {
-//            dimension "mode"
-//            applicationIdSuffix ".full"
-//            versionNameSuffix "-full"
-//        }
+    productFlavors {
+        demo {
+            dimension "mode"
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        full {
+            dimension "mode"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+        }
 
 //        minApi24 {
 //            dimension "api"
@@ -109,7 +109,7 @@ android {
 //            versionCode 10000  + android.defaultConfig.versionCode
 //            versionNameSuffix "-minApi21"
 //        }
-//    }
+    }
 
     //过滤变体, 如下就会过滤minApi21demo组合的变体, 在bulid Variants中就看不到这些组合了
 //    variantFilter { variant ->
@@ -136,32 +136,32 @@ android {
 
 
     //修改生成的apk名字
-//    applicationVariants.all { variant ->
-//        variant.outputs.each { output ->
-//            def newName
-//            def timeNow
-//            def oldFile = output.outputFile
-//            def outDirectory = oldFile.parent
-//
-//            if ("true".equals(rootProject.ext.IS_JENKINS)) {
-//                timeNow = rootProject.ext.JENKINS_TIME
-//                outDirectory = 'D:/tomcat'
-//                newName = 'test' +
-//                        rootProject.ext.APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
-//            } else {
-//                timeNow = getDate()
-//                if (variant.buildType.name.equals('debug')) {
-//                    newName = "yj-android-v${APP_VERSION}-debug.apk"
-//                } else {
-//                    newName = 'yj-android-v' +
-//                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
-//                }
-//            }
-//
-//            output.outputFile = new File(outDirectory, newName)
-//
-//        }
-//    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def newName
+            def timeNow
+            def oldFile = output.outputFile
+            def outDirectory = oldFile.parent
+
+            if ("true".equals(rootProject.ext.IS_JENKINS)) {
+                timeNow = rootProject.ext.JENKINS_TIME
+                outDirectory = 'D:/tomcat'
+                newName = 'test' +
+                        rootProject.ext.APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+            } else {
+                timeNow = getDate()
+                if (variant.buildType.name.equals('debug')) {
+                    newName = "yj-android-v${APP_VERSION}-debug.apk"
+                } else {
+                    newName = 'yj-android-v' +
+                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+                }
+            }
+
+            output.outputFile = new File(outDirectory, newName)
+
+        }
+    }
 
     lintOptions {
         abortOnError false
